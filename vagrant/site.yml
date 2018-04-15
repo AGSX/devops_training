@@ -6,8 +6,8 @@
       become: true
       become_user: root
       become_method: sudo
-  # roles:
-  #   - docker-ce
+  roles:
+    - docker-ce
   tasks:
     - name: Get latest Kubernetes stable version
       uri:
@@ -17,5 +17,9 @@
     - debug: msg="{{ kube_version.content | replace('\n', '') }}"
     - name: Fetch kubectl
       get_url:
-        url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version.content | replace('\n', '') }}/bin/darwin/amd64/kubectl"
-        dest: "~"
+        url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version.content | replace('\n', '') }}/bin/linux/amd64/kubectl"
+        dest: "/usr/local/bin"
+      become: true
+    - name: Make kubectl executable
+      file: path=/usr/local/bin/kubectl mode=a+x
+      become: true
