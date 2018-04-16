@@ -1,0 +1,4 @@
+virtualbox:
+  major_minor: 5.2
+  patch: 8
+  build: 121009

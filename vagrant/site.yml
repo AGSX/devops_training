@@ -8,6 +8,7 @@
       become_method: sudo
   roles:
     - docker-ce
+    - virtualbox
   tasks:
     - name: Get latest Kubernetes stable version
       uri:
