@@ -1,0 +1,10 @@
+---
+- name: Fetch Vagrant .deb
+  get_url:
+    url: "https://releases.hashicorp.com/vagrant/{{vagrant.version}}/vagrant_{{vagrant.version}}_{{ansible_architecture}}.deb"
+    dest: "{{ansible_env.HOME}}/vagrant_{{vagrant.version}}_{{ansible_architecture}}.deb"
+    checksum: "{{vagrant.checksum}}"
+- name: Install Vagrant from .deb
+  apt:
+    deb: "{{ansible_env.HOME}}/vagrant_{{vagrant.version}}_{{ansible_architecture}}.deb"
+  become: true

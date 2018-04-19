@@ -1,0 +1,8 @@
+---
+- name: Fetch kubectl
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl.version }}/bin/linux/amd64/kubectl"
+    dest: "/usr/local/bin/kubectl"
+    mode: "a+x"
+    checksum: "{{ kubectl.checksum }}"
+  become: true

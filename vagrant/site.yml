@@ -4,23 +4,10 @@
     - name: "FIX: Ubuntu 16.04 LTS doesn't come with certain modules, required by ansible"
       raw: apt-get install python-minimal aptitude -y
       become: true
-      become_user: root
-      become_method: sudo
+      # become_user: root
+      # become_method: sudo
   roles:
-    - docker-ce
-    - virtualbox
-  tasks:
-    - name: Get latest Kubernetes stable version
-      uri:
-        url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-        return_content: yes
-      register: kube_version
-    - debug: msg="{{ kube_version.content | replace('\n', '') }}"
-    - name: Fetch kubectl
-      get_url:
-        url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version.content | replace('\n', '') }}/bin/linux/amd64/kubectl"
-        dest: "/usr/local/bin"
-      become: true
-    - name: Make kubectl executable
-      file: path=/usr/local/bin/kubectl mode=a+x
-      become: true
+    # - docker-ce
+    # - virtualbox
+    - kubectl
+    - vagrant
