@@ -9,5 +9,6 @@
   roles:
     # - docker-ce
     # - virtualbox
-    - kubectl
     - vagrant
+    - kubectl
+    - minikube
