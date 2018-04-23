@@ -1,5 +1,17 @@
 ---
 - hosts: vagrant
   tasks:
-    - apt: update_cache=yes upgrade=yes
+    - block:
+      - name: Update and upgrade packages
+        apt: update_cache=yes cache_valid_time=3600
+      - name: Remove outdated Docker packages, if ever
+        apt: state=absent pkg={{item}}
+        with_items:
+          - docker
+          - docker-engine
+          - docker.io
       become: true
+    - name: Who am I?
+      shell: whoami
+      register: who
+    - debug: msg="{{who.stdout}}"
