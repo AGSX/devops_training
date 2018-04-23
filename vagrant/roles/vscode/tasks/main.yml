@@ -1,0 +1,10 @@
+---
+- name: Fetch Visual Studio Code .deb
+  get_url:
+    url: "https://go.microsoft.com/fwlink/?LinkID=760868"
+    dest: "{{ansible_env.HOME}}/code_1.22.2-1523551015_amd64.deb"
+    checksum: "{{vscode.checksum}}"
+- name: Install Visual Studio Code from .deb
+  apt:
+    deb: "{{ansible_env.HOME}}/code_1.22.2-1523551015_amd64.deb"
+  become: true
