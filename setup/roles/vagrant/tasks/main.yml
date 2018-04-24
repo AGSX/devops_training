@@ -10,3 +10,4 @@
   become: true
 - name: Download the ubuntu/xenial64 box
   shell: vagrant box add ubuntu/xenial64
+  ignore_errors: true
