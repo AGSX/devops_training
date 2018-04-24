@@ -37,7 +37,7 @@ Since we're on Ubuntu 16.04, this may result in an error on `192.168.33.10` if w
 
 (See https://github.com/ansible/ansible/issues/17081)
 
-Fortunately, we can also use Ansible to install that for us
+Fortunately, we can also use Ansible to install that for us:
 
 ```
 ansible -i hosts -m raw - "apt-get install python-minimal -y" -b 192.168.33.10

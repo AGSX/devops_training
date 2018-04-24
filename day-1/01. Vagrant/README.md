@@ -58,3 +58,7 @@ This may take some time to boot, but afterwards, we should be ready to SSH into 
 ```
 vagrant ssh
 ```
+
+See it in action:
+
+https://asciinema.org/a/PcrB5DtsdOzdp1AGvh3CnYHPA
