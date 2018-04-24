@@ -1,5 +1,5 @@
 ---
-- hosts: vagrant
+- hosts: all
   tasks:
     - block:
       - name: Update and upgrade packages

@@ -8,3 +8,5 @@
   apt:
     deb: "{{ansible_env.HOME}}/vagrant_{{vagrant.version}}_{{ansible_architecture}}.deb"
   become: true
+- name: Download the ubuntu/xenial64 box
+  shell: vagrant box add ubuntu/xenial64
