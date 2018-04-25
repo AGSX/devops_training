@@ -15,6 +15,7 @@
         - ca-certificates
         - curl
         - software-properties-common
+        - python-pip
     - name: Add Docker's official GPG key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
@@ -33,4 +34,19 @@
       group: name=docker state=present
     - name: Add current user to docker group
       user: name="{{ansible_user_id}}" groups=docker append=yes
+    - name: Ensure docker-py Python library is available
+      pip: name=docker-py
   become: true
+- name: Pre-pull Docker images used in exercises
+  docker_image: name={{item}}
+  with_items:
+    - "mysql:8.0"
+    - "mysql"
+    - "mariadb:10.3"
+    - "mariadb"
+    - "alpine:3.7"
+    - "alpine"
+    - "aisrael/memory_eater:0.1"
+    - "aisrael/memory_eater"
+    - "aisrael/tweeter"
+    - "wordpress:4.9.5"
