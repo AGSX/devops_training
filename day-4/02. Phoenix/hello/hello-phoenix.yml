@@ -46,11 +46,4 @@ spec:
           - name: PHOENIX_POSTGRES_DATABASE
             value: postgres
         ports:
-          - containerPort: 5432
-        volumeMounts:
-        - name: postgres-pv
-          mountPath: /var/lib/postgresql/data
-      volumes:
-      - name: postgres-pv
-        persistentVolumeClaim:
-          claimName: postgres-pv-claim
+          - containerPort: 4000
