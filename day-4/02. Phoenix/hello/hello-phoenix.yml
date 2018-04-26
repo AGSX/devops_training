@@ -33,7 +33,8 @@ spec:
       containers:
       - name: hello-phoenix
         image: hello-phoenix:0.1
-        imagePullPolicy: IfNotPresent
+        # Only for minikube
+        imagePullPolicy: Never
         env:
           - name: PHOENIX_SECRET_KEY_BASE
             value: "vX67+AxbdkGYxQRbyk9FaRdWevtlxGIMldj259G2xISJYYN0L0nYZ40sjxrhFEWY"
