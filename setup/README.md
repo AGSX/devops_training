@@ -15,5 +15,5 @@ sudo apt-get install -y ansible
 #### Run the playbook locally
 
 ```
-ansible-playbook site.yml
+ansible-playbook setup.yml
 ```

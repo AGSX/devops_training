@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: hello
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: hello
+    tier: db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: hello
+spec:
+  selector:
+    matchLabels:
+      app: hello
+      tier: db
+  template:
+    metadata:
+      labels:
+        app: hello
+        tier: db
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:9.6
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-secrets
+              key: postgresql-password
+        ports:
+          - containerPort: 5432
+        volumeMounts:
+        - name: postgres-pv
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-pv
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
